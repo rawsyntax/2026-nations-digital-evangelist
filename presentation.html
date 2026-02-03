@@ -362,50 +362,50 @@
 
         .timer-display {
             position: fixed;
-            top: 40px;
+            bottom: 40px;
             left: 40px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.6);
             color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            font-size: 32px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 18px;
             font-weight: bold;
             z-index: 1000;
             font-family: 'Courier New', monospace;
-            min-width: 150px;
+            min-width: 80px;
             text-align: center;
         }
 
         .timer-display.warning {
-            background: rgba(230, 126, 34, 0.9);
+            background: rgba(230, 126, 34, 0.7);
         }
 
         .timer-display.overtime {
-            background: rgba(231, 76, 60, 0.9);
+            background: rgba(231, 76, 60, 0.7);
         }
 
         .timer-controls {
             position: fixed;
-            top: 110px;
+            bottom: 80px;
             left: 40px;
             display: flex;
-            gap: 10px;
+            gap: 6px;
             z-index: 1000;
         }
 
         .timer-controls button {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.5);
             color: white;
             border: none;
-            padding: 8px 16px;
-            font-size: 14px;
-            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: normal;
         }
 
         .timer-controls button:hover {
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.7);
         }
 
         /* Instructions overlay */
