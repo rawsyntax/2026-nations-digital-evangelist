@@ -115,7 +115,9 @@
 - Title: "Building Our Digital Future"
 - Platform list: "Instagram • Newsletters • Discord"
 - Vision: "Nations Dads Group"
+- Vision: "Record/Livestream NNA Meetings"
 - CTA: "Vote Eric Himmelreich for Digital Evangelist"
+- QR Code: Links to GitHub repository with presentation files
 
 ### Script:
 
