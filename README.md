@@ -2,9 +2,17 @@
 
 Campaign presentation for Eric Himmelreich's candidacy for Digital Evangelist position at Nations Neighborhood Association.
 
+## 🌐 View Online
+
+**Live Presentation:** https://rawsyntax.github.io/2026-nations-digital-evangelist/presentation.html
+
+**GitHub Repository:** https://github.com/rawsyntax/2026-nations-digital-evangelist
+
 ## 📊 Presentation
 
-**View the presentation:** Open `presentation.html` in any web browser
+**View the presentation:**
+- **Online:** Click the live presentation link above
+- **Locally:** Open `presentation.html` in any web browser
 
 **Navigate:** Use arrow keys or click Previous/Next buttons
 
