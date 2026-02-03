@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Himmelreich - Nations Digital Evangelist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            background: white;
+            padding: 60px;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Slide 1 - Opening */
+        #slide1 {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        linear-gradient(135deg, #E67E22 0%, #3498DB 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .headshot {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 8px solid white;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: normal;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .credential {
+            text-align: center;
+        }
+
+        .credential .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .credential .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .credential .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Slide 2 - Social Media */
+        #slide2 {
+            background: white;
+        }
+
+        .slide-title {
+            font-size: 54px;
+            color: #E67E22;
+            margin-bottom: 60px;
+            align-self: flex-start;
+            font-weight: bold;
+        }
+
+        .split-content {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .split-left, .split-right {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .placeholder {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px dashed #3498DB;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            color: #3498DB;
+            font-size: 16px;
+            width: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .caption {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* Slide 3 - Newsletter */
+        #slide3 .content-main {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .main-area {
+            flex: 6;
+        }
+
+        .sidebar {
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: #E67E22;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-card .number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .metric-card .label {
+            font-size: 20px;
+        }
+
+        /* Slide 4 - Discord */
+        #slide4 .content-main {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .main-area-discord {
+            flex: 7;
+        }
+
+        .callout-box {
+            flex: 3;
+            background: #27AE60;
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .callout-box .stat {
+            text-align: center;
+        }
+
+        .callout-box .stat .big-number {
+            font-size: 72px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .callout-box .stat .label {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Slide 5 - Closing */
+        #slide5 {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                        linear-gradient(135deg, #E67E22 0%, #3498DB 50%, #27AE60 100%);
+            text-align: center;
+        }
+
+        #slide5 h1 {
+            color: #333;
+            font-size: 54px;
+            margin-bottom: 40px;
+        }
+
+        .platform-list {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .vision-item {
+            font-size: 32px;
+            color: #D35400;
+            font-weight: bold;
+            margin-bottom: 60px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .cta {
+            font-size: 64px;
+            color: #D35400;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cta-subtitle {
+            font-size: 48px;
+            color: #333;
+        }
+
+        .contact {
+            font-size: 24px;
+            color: #333;
+            margin-top: 40px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            font-size: 14px;
+            color: rgba(0,0,0,0.3);
+        }
+
+        #slide1 .footer {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        button {
+            background: #E67E22;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #D35400;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* Instructions overlay */
+        .instructions {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(231, 76, 60, 0.95);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            z-index: 2000;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+                position: relative !important;
+                display: flex !important;
+            }
+            .nav-controls, .slide-counter, .instructions {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions hidden" id="instructions">
+        ⚡ Use Arrow Keys or buttons to navigate • Press 'H' to hide this message • Press Ctrl+P to export PDF
+    </div>
+
+    <div class="slide-counter" id="counter">1 / 5</div>
+
+    <div class="presentation">
+        <!-- Slide 1: Opening / Credibility -->
+        <div class="slide active" id="slide1">
+            <div class="headshot">
+                <img src="avatar-2026.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" alt="Eric Himmelreich">
+            </div>
+            <h1>Digital Evangelist for the Nations</h1>
+            <h2>Connecting Our Community with AI</h2>
+
+            <div class="credentials">
+                <div class="credential">
+                    <div class="icon">🎮</div>
+                    <div class="title">100+ Members</div>
+                    <div class="subtitle">2 Years • Zero Incidents</div>
+                </div>
+                <div class="credential">
+                    <div class="icon">🤖</div>
+                    <div class="title">Red Hat AI</div>
+                    <div class="subtitle">2 Years Experience</div>
+                </div>
+                <div class="credential">
+                    <div class="icon">📊</div>
+                    <div class="title">Analytics Expert</div>
+                    <div class="subtitle">Kissmetrics • Email Campaigns</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; font-size: 24px; opacity: 0.9; text-align: center;">
+                🏠 Louisiana Ave Resident • House Built 1976
+            </div>
+
+            <div class="footer">Eric Himmelreich • Nations Digital Evangelist Candidate</div>
+        </div>
+
+        <!-- Slide 2: AI Social Media -->
+        <div class="slide" id="slide2">
+            <div class="slide-title">AI-Powered Social Media</div>
+
+            <div class="split-content">
+                <div class="split-left">
+                    <img src="instagram.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;" alt="Social Media Scheduler">
+                </div>
+                <div class="split-right">
+                    <img src="nations-shot.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" alt="Nations Neighborhood - @thenations615">
+                </div>
+            </div>
+
+            <div class="caption">
+                "Promoting Fat Bottom meetings, 51st Ave businesses, Firefly 5K"
+            </div>
+
+            <div class="footer">Nations615 • Digital Evangelism</div>
+        </div>
+
+        <!-- Slide 3: AI Email Newsletter -->
+        <div class="slide" id="slide3">
+            <div class="slide-title">Smart Email Newsletters</div>
+
+            <div class="content-main">
+                <div class="main-area">
+                    <img src="mailchimp.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;" alt="Newsletter Builder">
+                </div>
+                <div class="sidebar">
+                    <div class="metric-card">
+                        <div class="number">2,500</div>
+                        <div class="label">Subscribers</div>
+                    </div>
+                    <div class="metric-card" style="background: #3498DB;">
+                        <div class="number">42%</div>
+                        <div class="label">Open Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">Nations615 • Digital Evangelism</div>
+        </div>
+
+        <!-- Slide 4: Discord + AI -->
+        <div class="slide" id="slide4">
+            <div class="slide-title" style="color: #5865F2;">Discord Community + AI</div>
+
+            <div class="content-main">
+                <div class="main-area-discord">
+                    <img src="discord.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;" alt="Nations615 Discord Server">
+                </div>
+                <div class="callout-box">
+                    <div class="stat">
+                        <div class="big-number">100+</div>
+                        <div class="label">Members</div>
+                    </div>
+                    <div class="stat">
+                        <div class="big-number">2</div>
+                        <div class="label">Years</div>
+                    </div>
+                    <div class="stat">
+                        <div class="big-number">0</div>
+                        <div class="label">Incidents</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">Nations615 • Digital Evangelism</div>
+        </div>
+
+        <!-- Slide 5: Closing / Vision -->
+        <div class="slide" id="slide5">
+            <h1>Building Our Digital Future</h1>
+
+            <div class="platform-list">
+                Instagram • Newsletters • Discord
+            </div>
+
+            <div class="vision-item">
+                Nations Dads Group
+            </div>
+
+            <div class="vision-item" style="font-size: 28px; margin-bottom: 50px;">
+                Record/Livestream NNA Meetings
+            </div>
+
+            <div class="cta">Vote Eric Himmelreich</div>
+            <div class="cta-subtitle">for Digital Evangelist</div>
+
+            <div class="contact">Nations615 Discord Community</div>
+
+            <div class="footer">Eric Himmelreich • Digital Evangelist</div>
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button id="prevBtn" onclick="previousSlide()">← Previous</button>
+        <button id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+
+            document.getElementById('counter').textContent = `${currentSlide} / ${totalSlides}`;
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'h' || e.key === 'H') {
+                document.getElementById('instructions').classList.toggle('hidden');
+            } else if (e.key === 'Home') {
+                currentSlide = 1;
+                showSlide(currentSlide);
+            } else if (e.key === 'End') {
+                currentSlide = totalSlides;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
