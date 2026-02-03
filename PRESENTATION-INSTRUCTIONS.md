@@ -23,10 +23,20 @@ I've built you a **fully functional HTML presentation** that works in any browse
    - Press **Home** to go to first slide
    - Press **End** to go to last slide
 
-3. **Practice your timing:**
+3. **Use the built-in timer:**
+   - **Top-left corner:** Live timer display
+   - Click **▶ Start** when you begin presenting
+   - Timer turns **orange** at 1:50 (10 seconds left)
+   - Timer turns **red** at 2:00 (overtime)
+   - Click **⏸ Pause** to pause
+   - Click **↻ Reset** to reset to 0:00
+   - **Timer persists** across all slides
+
+4. **Practice your timing:**
    - Open the presentation
+   - Click **Start** on the timer
    - Read through the script (see `SPEAKER-NOTES.md`)
-   - Use a timer - target 120 seconds
+   - Target: 120 seconds (2:00) or less
 
 ### Option 2: Export to PDF for Sharing
 

@@ -360,6 +360,54 @@
             z-index: 1000;
         }
 
+        .timer-display {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 32px;
+            font-weight: bold;
+            z-index: 1000;
+            font-family: 'Courier New', monospace;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .timer-display.warning {
+            background: rgba(230, 126, 34, 0.9);
+        }
+
+        .timer-display.overtime {
+            background: rgba(231, 76, 60, 0.9);
+        }
+
+        .timer-controls {
+            position: fixed;
+            top: 110px;
+            left: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .timer-controls button {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .timer-controls button:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
         /* Instructions overlay */
         .instructions {
             position: fixed;
@@ -386,7 +434,7 @@
                 position: relative !important;
                 display: flex !important;
             }
-            .nav-controls, .slide-counter, .instructions {
+            .nav-controls, .slide-counter, .instructions, .timer-display, .timer-controls {
                 display: none !important;
             }
         }
@@ -398,6 +446,13 @@
     </div>
 
     <div class="slide-counter" id="counter">1 / 5</div>
+
+    <div class="timer-display" id="timer">0:00</div>
+    <div class="timer-controls">
+        <button id="startBtn" onclick="startTimer()">▶ Start</button>
+        <button id="pauseBtn" onclick="pauseTimer()" style="display:none;">⏸ Pause</button>
+        <button id="resetBtn" onclick="resetTimer()">↻ Reset</button>
+    </div>
 
     <div class="presentation">
         <!-- Slide 1: Opening / Credibility -->
@@ -545,6 +600,60 @@
     <script>
         let currentSlide = 1;
         const totalSlides = 5;
+
+        // Timer variables
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let timerRunning = false;
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timer').textContent = display;
+
+            // Change color based on time
+            const timerEl = document.getElementById('timer');
+            timerEl.classList.remove('warning', 'overtime');
+
+            if (timerSeconds >= 120) {
+                timerEl.classList.add('overtime'); // Red after 2 minutes
+            } else if (timerSeconds >= 110) {
+                timerEl.classList.add('warning'); // Orange after 1:50
+            }
+        }
+
+        function startTimer() {
+            if (!timerRunning) {
+                timerRunning = true;
+                timerInterval = setInterval(() => {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }, 1000);
+
+                document.getElementById('startBtn').style.display = 'none';
+                document.getElementById('pauseBtn').style.display = 'inline-block';
+            }
+        }
+
+        function pauseTimer() {
+            if (timerRunning) {
+                timerRunning = false;
+                clearInterval(timerInterval);
+
+                document.getElementById('startBtn').style.display = 'inline-block';
+                document.getElementById('pauseBtn').style.display = 'none';
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSeconds = 0;
+            updateTimerDisplay();
+
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('pauseBtn').style.display = 'none';
+        }
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
